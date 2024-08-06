@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Link as MuiLink } from '@mui/material';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
@@ -29,12 +29,23 @@ const ContentOverlay = styled(Box)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'start',
-    justifyContent: 'space-around',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Hafif renkli arka plan
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     color: 'white',
     textAlign: 'start',
     padding: theme.spacing(3),
 }));
+
+const DetailSection = styled(Box)(({ theme }) => ({
+    padding: theme.spacing(2),
+    '& h3': {
+        marginBottom: theme.spacing(1),
+    },
+    '& div': {
+        marginBottom: theme.spacing(2),
+    }
+}));
+
 const GameDetail = () => {
     const [gameInfo, setGameInfo] = useState(null);
     const pathname = usePathname();
@@ -68,30 +79,36 @@ const GameDetail = () => {
             <MainBox component="section">
                 <img src={gameInfo.image} alt={gameInfo.name} />
                 <ContentOverlay>
-                    <Typography variant="h1">{gameInfo.title}</Typography>
-                    <Typography variant="h3">{gameInfo.description}</Typography>
-                    <Typography variant="h3">{gameInfo.awards}</Typography>
+                    <Typography variant="h1" sx={{ mb: 2 }}>{gameInfo.title}</Typography>
+                    <Typography variant="h4" sx={{ mb: 2 }}>{gameInfo.description}</Typography>
+                    <Typography variant="h4">{gameInfo.awards}</Typography>
                 </ContentOverlay>
             </MainBox>
             <MainBox component="section">
                 <img src={gameInfo.hoverimage} alt={gameInfo.name} />
                 <ContentOverlay>
-                    <Typography variant="h3">{gameInfo.type}</Typography>
-                    <div>
-                        <Typography variant="h3">Platforms:</Typography>
-                        {gameInfo.platforms.map((platform, index) => (
-                            <Typography key={index} variant="h3">{platform}</Typography>
-                        ))}
-                    </div>
-                    <Typography variant="h3">{gameInfo.totalDownloads + " Total Downloads"}</Typography>
-                    <Link
-                    href={gameInfo.wiki}
-                    target='_blank'
-                    >Wiki</Link>
+                    <DetailSection>
+                        <Typography variant="h4" sx={{ mb: 1 }}>{gameInfo.type}</Typography>
+                        <div>
+                            <Typography variant="h4">Platforms:</Typography>
+                            {gameInfo.platforms.map((platform, index) => (
+                                <Typography key={index} variant="h4">{platform}</Typography>
+                            ))}
+                        </div>
+                        <Typography variant="h4" sx={{ mb: 2 }}>{gameInfo.totalDownloads} Total Downloads</Typography>
+                        <MuiLink
+                            component={Link}
+                            href={gameInfo.wiki}
+                            target='_blank'
+                            variant="h4"
+                            sx={{ color: 'lightblue' }}
+                        >
+                            Wiki
+                        </MuiLink>
+                    </DetailSection>
                 </ContentOverlay>
             </MainBox>
         </>
-
     );
 };
 

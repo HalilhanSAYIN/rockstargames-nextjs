@@ -1,11 +1,12 @@
-"use client"
+"use client";
 import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import { Button, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import Box from '@mui/material/Box';
+import { Button, Drawer, List, ListItem, ListItemText, Typography } from '@mui/material';
 import { useState } from 'react';
 import Image from 'next/image';
 import { styled } from '@mui/material/styles';
@@ -13,6 +14,14 @@ import Link from 'next/link';
 
 const HeaderBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.footerColor,
+}));
+
+const HeaderLink = styled(Link)(({ theme }) => ({
+  color: 'inherit',
+  textDecoration: 'none',
+  margin: theme.spacing(0, 2),
+  fontWeight: 300,
+  letterSpacing: '0.05em',
 }));
 
 const Header = () => {
@@ -27,13 +36,13 @@ const Header = () => {
 
   const drawerList = (
     <List>
-      <ListItem href="#about">
+      <ListItem button component={Link} href="#about">
         <ListItemText primary="About" />
       </ListItem>
-      <ListItem href="#allgames">
+      <ListItem button component={Link} href="#allgames">
         <ListItemText primary="All Games" />
       </ListItem>
-      <ListItem href="#steam">
+      <ListItem button component={Link} href="#steam">
         <ListItemText primary="Steam" />
       </ListItem>
     </List>
@@ -42,23 +51,17 @@ const Header = () => {
   return (
     <HeaderBar position="static">
       <Container maxWidth="lg">
-        <Toolbar>
-          <Image
-            src={"/rslogo.svg"}
-            height={150}
-            width={150}
-          />
-          <div sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <Link  href="#about" >
-              About
-            </Link>
-            <Link href="/All" >
-              All Games
-            </Link>
-            <Link href="#steam">
-              Steam
-            </Link>
-          </div>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
+          <Link href="/" passHref>
+            <IconButton>
+              <Image src="/rslogo.svg" height={150} width={150} alt="Logo" />
+            </IconButton>
+          </Link>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+            <HeaderLink href="#about">About</HeaderLink>
+            <HeaderLink href="/All">All Games</HeaderLink>
+            <HeaderLink href="#steam">Steam</HeaderLink>
+          </Box>
           <IconButton
             edge="start"
             color="inherit"

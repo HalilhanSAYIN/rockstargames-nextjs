@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, Card, CardMedia, CardContent } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import Link from 'next/link';
 
 const CardContainer = styled(Box)(({ theme }) => ({
   display: 'grid',
@@ -67,8 +68,9 @@ const CustomCardContent = styled(CardContent)({
   zIndex: 2,
 });
 
-const GameCard = ({ mainImage, hoverImage, title }) => (
+const GameCard = ({ mainImage, hoverImage, title, id}) => (
   <CustomCard>
+    <Link href={`/All/${id}`}> 
     <ImageContainer>
       <MainImage className="mainImage" component="img" image={mainImage} />
       <HoverImage className="hoverImage" src={hoverImage} alt="Hover Image" />
@@ -76,6 +78,8 @@ const GameCard = ({ mainImage, hoverImage, title }) => (
     <CustomCardContent>
       <Typography variant="h4">{title}</Typography>
     </CustomCardContent>
+    </Link>
+    
   </CustomCard>
 );
 
@@ -96,6 +100,7 @@ const CardDisplay = () => {
     <CardContainer>
       {games.map((game) => (
         <GameCard
+          id ={game.id}
           key={game.id}
           mainImage={game.image}
           hoverImage={game.hoverimage}

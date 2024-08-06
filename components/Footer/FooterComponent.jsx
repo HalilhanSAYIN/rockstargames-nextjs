@@ -9,16 +9,17 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 const Footer = () => {
   return (
     <Box component="footer" sx={{ py: 3, px: 2, mt: 'auto', backgroundColor: 'primary.main', color: 'white' }}>
-      <Container maxWidth="lg" sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Typography variant="body2" align="center">
-          {'© '}
-          <Link  href="https://www.rockstargames.com/" target="_blank">
+      <Container maxWidth="lg" sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: 'center' }}>
+        <Typography variant="h6" align="center" sx={{ mb: { xs: 2, sm: 0 } }}>
+        
+          <Link  variant="h6" color="inherit" href="https://www.rockstargames.com/" target="_blank" sx={{ color: 'white' }}>
             Halilhan SAYIN
           </Link>
+          {'© '}
           {' '}{new Date().getFullYear()}
         </Typography>
         <Box>
-          <Link color="inherit" href="https://github.com/" target="_blank" sx={{ marginRight: 1 }} > 
+          <Link color="inherit" href="https://github.com/" target="_blank" sx={{ marginRight: 1 }}>
             <GitHubIcon />
           </Link>
           <Link color="inherit" href="https://www.linkedin.com/" target="_blank">

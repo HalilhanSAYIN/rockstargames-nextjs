@@ -43,9 +43,9 @@ const GeneralInfoComponent = () => {
           47 Games and 100+ Game Awards 
         </Typography>
         <Typography variant="h2" component="p" gutterBottom>
-          Your subtitle or additional information here.
+        Best In The Gaming Industry
         </Typography>
-        <Button variant="contained" color="primary" size="large">
+        <Button href='/All' variant="contained" color="secondary" size="large">
           Discover All Games
         </Button>
       </ContentOverlay>
