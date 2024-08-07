@@ -2,6 +2,7 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import theme from '@/app/theme';
 
 const HeroBox = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -32,6 +33,17 @@ const ContentOverlay = styled(Box)(({ theme }) => ({
   color: 'white',
   textAlign: 'center',
   padding: theme.spacing(3),
+  fontSize: '2rem', // Default font size
+  [theme.breakpoints.up('sm')]: {
+    fontSize: '3rem', // Small screens and up: larger font size
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '4rem', // Medium screens and up: larger font size
+    marginBottom: 0, // Medium screens and up: no margin bottom
+  },
+  [theme.breakpoints.up('lg')]: {
+    fontSize: '6rem', // Large screens and up: largest font size
+  },
 }));
 
 const GeneralInfoComponent = () => {
@@ -39,13 +51,60 @@ const GeneralInfoComponent = () => {
     <HeroBox component="section" id='about'>
       <img src='/hero2.webp' alt='second hero image' />
       <ContentOverlay>
-        <Typography variant="h1" component="h1" gutterBottom >
+        <Typography 
+          sx={{
+            fontSize: '1.5rem',
+            [theme.breakpoints.up('sm')]: {
+              fontSize: '2rem',
+            },
+            [theme.breakpoints.up('md')]: {
+              fontSize: '3rem',
+            },
+            [theme.breakpoints.up('lg')]: {
+              fontSize: '4rem',
+            },
+          }}
+        >
           47 Games and 100+ Game Awards 
         </Typography>
-        <Typography variant="h2" component="p" gutterBottom>
-        Best In The Gaming Industry
+        <Typography 
+          variant="h3" 
+          component="p" 
+          sx={{
+            fontFamily: theme.myFont,
+            fontSize: '1rem',
+            [theme.breakpoints.up('sm')]: {
+              fontSize: '1.5rem',
+            },
+            [theme.breakpoints.up('md')]: {
+              fontSize: '2rem',
+            },
+            [theme.breakpoints.up('lg')]: {
+              fontSize: '2.5rem',
+            },
+          }} 
+          gutterBottom
+        >
+          Best In The Gaming Industry
         </Typography>
-        <Button href='/All' variant="contained" color="secondary" size="large">
+        <Button 
+          href='/All' 
+          variant="contained" 
+          color="secondary" 
+          size="large"
+          sx={{
+            fontSize: '0.75rem',
+            [theme.breakpoints.up('sm')]: {
+              fontSize: '1rem',
+            },
+            [theme.breakpoints.up('md')]: {
+              fontSize: '1.25rem',
+            },
+            [theme.breakpoints.up('lg')]: {
+              fontSize: '1.5rem',
+            },
+          }}
+        >
           Discover All Games
         </Button>
       </ContentOverlay>

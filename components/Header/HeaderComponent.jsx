@@ -6,11 +6,12 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import { Button, Drawer, List, ListItem, ListItemText, Typography } from '@mui/material';
+import { Drawer, List, ListItem, ListItemText, Divider, Typography } from '@mui/material';
 import { useState } from 'react';
 import Image from 'next/image';
 import { styled } from '@mui/material/styles';
 import Link from 'next/link';
+import CloseIcon from '@mui/icons-material/Close';
 
 const HeaderBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.footerColor,
@@ -24,6 +25,23 @@ const HeaderLink = styled(Link)(({ theme }) => ({
   letterSpacing: '0.05em',
 }));
 
+const DrawerContent = styled(Box)(({ theme }) => ({
+  width: 250,
+  padding: theme.spacing(2),
+  backgroundColor: theme.palette.primary.main,
+  color: theme.palette.primary.contrastText,
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+}));
+
+const DrawerFooter = styled(Box)(({ theme }) => ({
+  marginTop: 'auto',
+  padding: theme.spacing(2),
+  textAlign: 'center',
+}));
+
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -35,17 +53,29 @@ const Header = () => {
   };
 
   const drawerList = (
-    <List>
-      <ListItem button component={Link} href="#about">
-        <ListItemText primary="About" />
-      </ListItem>
-      <ListItem button component={Link} href="#allgames">
-        <ListItemText primary="All Games" />
-      </ListItem>
-      <ListItem button component={Link} href="#steam">
-        <ListItemText primary="Steam" />
-      </ListItem>
-    </List>
+    <DrawerContent>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+        <Image src="/rslogo.svg" height={150} width={150} alt="Logo" />
+        <IconButton onClick={toggleDrawer(false)} sx={{ color: 'white' }}>
+          <CloseIcon />
+        </IconButton>
+      </Box>
+      <Divider sx={{ borderColor: 'white' }} />
+      <List>
+        <ListItem button component={Link} href="//#about">
+          <ListItemText primary="About" />
+        </ListItem>
+        <ListItem button component={Link} href="/All">
+          <ListItemText primary="All Games" />
+        </ListItem>
+        <ListItem button component={Link} href="#visit">
+          <ListItemText primary="Visit" />
+        </ListItem>
+      </List>
+      <DrawerFooter>
+        <Typography variant="body2">© Rockstar Games</Typography>
+      </DrawerFooter>
+    </DrawerContent>
   );
 
   return (
@@ -58,9 +88,9 @@ const Header = () => {
             </IconButton>
           </Link>
           <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
-            <HeaderLink href="#about">About</HeaderLink>
+            <HeaderLink href="//#about">About</HeaderLink>
             <HeaderLink href="/All">All Games</HeaderLink>
-            <HeaderLink href="#steam">Steam</HeaderLink>
+            <HeaderLink href="https://www.rockstargames.com/" target="_blank">Visit</HeaderLink>
           </Box>
           <IconButton
             edge="start"

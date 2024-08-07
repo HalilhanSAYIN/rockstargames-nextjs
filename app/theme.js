@@ -1,9 +1,9 @@
 'use client';
 import { createTheme } from '@mui/material/styles';
 import localFont from "next/font/local"
-import { Roboto } from 'next/font/google'
+import { Open_Sans } from 'next/font/google'
  
-const roboto = Roboto({
+const openSans = Open_Sans({
   weight: '400',
   subsets: ['latin'],
   display: 'swap',
@@ -29,16 +29,12 @@ const myFont = localFont({
 
 const theme = createTheme({
   typography: {
-    fontFamily: myFont.style.fontFamily,
-    header: {
-      fontFamily: 'Roboto, sans-serif',
-    },
-    footer: {
-      fontFamily: 'Roboto, sans-serif',
-    },
+    fontFamily: openSans.style.fontFamily,
+    
   },
+  
   secondaryFont : {
-    fontFamily : roboto.style.fontFamily
+    fontFamily : myFont.style.fontFamily
   },
   palette: {
     primary: {

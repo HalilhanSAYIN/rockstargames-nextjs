@@ -30,6 +30,16 @@ const ContentOverlay = styled(Box)(({ theme }) => ({
     flexDirection: 'column',
     alignItems: 'start',
     justifyContent: 'center',
+    fontSize: '2rem',  // Default font size
+    [theme.breakpoints.up('sm')]: {
+        fontSize: '3rem',  // Small screens and up: larger font size
+    },
+    [theme.breakpoints.up('md')]: {
+        fontSize: '4rem',  // Medium screens and up: larger font size
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: '6rem',  // Large screens and up: largest font size
+    },
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     color: 'white',
     textAlign: 'start',
@@ -40,10 +50,30 @@ const DetailSection = styled(Box)(({ theme }) => ({
     padding: theme.spacing(2),
     '& h3': {
         marginBottom: theme.spacing(1),
+        fontSize: '1.5rem',  // Default font size
+        [theme.breakpoints.up('sm')]: {
+            fontSize: '2rem',  // Small screens and up: larger font size
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize: '2.5rem',  // Medium screens and up: larger font size
+        },
     },
     '& div': {
         marginBottom: theme.spacing(2),
     }
+}));
+
+const ResponsiveTypography = styled(Typography)(({ theme }) => ({
+    fontSize: '1rem',  // Default font size
+    [theme.breakpoints.up('sm')]: {
+        fontSize: '1.25rem',  // Small screens and up: larger font size
+    },
+    [theme.breakpoints.up('md')]: {
+        fontSize: '1.5rem',  // Medium screens and up: larger font size
+    },
+    [theme.breakpoints.up('lg')]: {
+        fontSize: '2rem',  // Large screens and up: largest font size
+    },
 }));
 
 const GameDetail = () => {
@@ -68,7 +98,7 @@ const GameDetail = () => {
         return (
             <MainBox component="section">
                 <ContentOverlay>
-                    <Typography>Loading...</Typography>
+                    <ResponsiveTypography>Loading...</ResponsiveTypography>
                 </ContentOverlay>
             </MainBox>
         );
@@ -79,23 +109,24 @@ const GameDetail = () => {
             <MainBox component="section">
                 <img src={gameInfo.image} alt={gameInfo.name} />
                 <ContentOverlay>
-                    <Typography variant="h1" sx={{ mb: 2 }}>{gameInfo.title}</Typography>
-                    <Typography variant="h4" sx={{ mb: 2 }}>{gameInfo.description}</Typography>
-                    <Typography variant="h4">{gameInfo.awards}</Typography>
+                    <Typography variant='h3'>{gameInfo.title}</Typography>
+                    <ResponsiveTypography>{gameInfo.description}</ResponsiveTypography>
+                    <br></br>
+                    <ResponsiveTypography>{gameInfo.awards}</ResponsiveTypography>
                 </ContentOverlay>
             </MainBox>
             <MainBox component="section">
                 <img src={gameInfo.hoverimage} alt={gameInfo.name} />
                 <ContentOverlay>
                     <DetailSection>
-                        <Typography variant="h4" sx={{ mb: 1 }}>{gameInfo.type}</Typography>
+                        <ResponsiveTypography>{gameInfo.type}</ResponsiveTypography>
                         <div>
-                            <Typography variant="h4">Platforms:</Typography>
+                            <ResponsiveTypography>Platforms:</ResponsiveTypography>
                             {gameInfo.platforms.map((platform, index) => (
-                                <Typography key={index} variant="h4">{platform}</Typography>
+                                <ResponsiveTypography key={index}>{platform}</ResponsiveTypography>
                             ))}
                         </div>
-                        <Typography variant="h4" sx={{ mb: 2 }}>{gameInfo.totalDownloads} Total Downloads</Typography>
+                        <ResponsiveTypography>{gameInfo.totalDownloads} Total Downloads</ResponsiveTypography>
                         <MuiLink
                             component={Link}
                             href={gameInfo.wiki}
