@@ -7,10 +7,12 @@ import Link from 'next/link';
 const CardContainer = styled(Box)(({ theme }) => ({
   display: 'grid',
   gap: theme.spacing(4),
-  padding: theme.spacing(4),
+  padding: theme.spacing(2),
   gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
   '@media (min-width: 800px)': {
     gridTemplateColumns: 'repeat(2, 1fr)',
+  },  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(4),
   },
 }));
 
